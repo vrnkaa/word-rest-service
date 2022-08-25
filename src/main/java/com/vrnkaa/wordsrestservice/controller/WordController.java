@@ -1,36 +1,33 @@
 package com.vrnkaa.wordsrestservice.controller;
 
 import com.vrnkaa.wordsrestservice.model.Word;
-import com.vrnkaa.wordsrestservice.repository.WordRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import com.vrnkaa.wordsrestservice.service.WordService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
+@RequestMapping("/word")
 public class WordController {
-    @Autowired
-    WordRepository wordRepository;
 
-    @GetMapping("/words")
-    public String listAll(Model model) {
-        List<Word> listWords = wordRepository.findAll();
-        model.addAttribute("listWords", listWords);
+    private final WordService wordService;
 
-        return "words";
+    public WordController(WordService wordService) {
+        this.wordService = wordService;
     }
 
-    @GetMapping("/")
-    public String hello() {
-        return "Hello";
+    @GetMapping
+    public List<Word> findAllWord() {
+        return wordService.findWord();
     }
 
-    @GetMapping("/greetings")
-    public String greetings() {
-        return "Greetings";
+    @GetMapping("/{id}")
+    public Optional<Word> findWordById(@PathVariable("id") Long id) {
+        return wordService.findById(id);
     }
 
 }

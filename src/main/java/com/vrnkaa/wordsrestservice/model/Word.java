@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Word {
     @Id
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @Column(name = "language")
     private String language;
