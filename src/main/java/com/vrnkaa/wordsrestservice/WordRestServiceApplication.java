@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WordsRestServiceApplication {
+public class WordRestServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WordsRestServiceApplication.class, args);
+		SpringApplication.run(WordRestServiceApplication.class, args);
 	}
 
 }
